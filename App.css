@@ -1,0 +1,439 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    background: #fff;
+    color: #fff;
+}
+
+header {
+    background-color: #26A69A;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 15px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn-menu {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.btn-menu:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-menu i {
+    margin-right: 10px;
+    font-size: 1.5rem;
+}
+
+.btn-login {
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    align-items: center;
+    background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+    border: 0;
+    border-radius: 8px;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+    justify-content: center;
+    display: flex;
+    font-size: 1rem;
+    justify-content: center;
+    line-height: 1em;
+    max-width: 100%;
+    min-width: 140px;
+    padding: 12px;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-login:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+/* Menú lateral */
+aside {
+    width: 250px;
+    background: #26A69A;
+    color: white;
+    padding-top: 70px; 
+    position: fixed;
+    top: 0;
+    left: -250px; /* Oculto por defecto */
+    bottom: 0;
+    z-index: 5;
+    transition: left 0.3s ease;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+aside.active {
+    left: 0; /* Visible cuando está activo */
+}
+
+aside nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+aside nav ul li {
+    margin: 15px 0;
+}
+
+aside nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 12px 20px;
+    display: block;
+    transition: background 0.3s;
+    font-size: 1.1rem;
+}
+
+aside nav ul li a:hover {
+    background: rgba(255, 179, 0, 0.2);
+}
+
+/* Overlay para cuando el menú está abierto */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 4;
+}
+
+.overlay.active {
+    display: block;
+}
+
+main {
+  margin-left: 0;
+  padding: 0px 0px 0px 0px;
+  transition: margin-left 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;   /* para que ocupe todo */
+  box-sizing: border-box;
+}
+
+main.menu-active {
+    margin-left: 250px;
+}
+
+/* Contenido principal */
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* centra vertical */
+  align-items: center;       /* centra horizontal */
+  text-align: center;
+  height: 100vh;             /* ocupa toda la pantalla inicial */
+  width: 100%;
+  padding: 10px 1rem;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.5), 
+      rgba(0, 0, 0, 0.5)
+    ),
+    url("https://images.unsplash.com/photo-1526392060635-9d6019884377?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80")
+    center/cover no-repeat;
+  color: white;
+  position: relative;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+}
+
+.hero p {
+  font-size: 1.3rem;
+  max-width: 800px;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.explore-btn {
+  background-color: #FFB300;
+  color: #000000c0;
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none; 
+}
+
+.explore-btn:hover {
+  background-color: #ffa000;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Media queries para responsividad */
+@media (min-width: 992px) {
+    .btn-menu {
+        display: none;
+    }
+
+    aside {
+        left: 0;
+    }
+
+    main {
+        margin-left: 0;   /* que por defecto quede centrado */
+    }
+
+    main.menu-active {
+        margin-left: 250px; /* solo se mueve cuando está activo */
+    }
+
+    .overlay {
+        display: none !important;
+    }
+}
+
+/* Estilos para las secciones de contenido */
+.content-section {
+    margin-bottom: 3rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content-section h2 {
+    color: #000000;
+    margin-top: 0;
+}
+
+.content-section img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto 3rem auto;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  text-align: left;  /* para que el texto no quede raro centrado */
+}
+
+main.home {
+  padding-top: 0px; /* el home no tiene espacio */
+}
+
+
+main.profile,
+main.explorar {
+  padding-top: 150px; /* deja espacio debajo del header fijo */
+}
+
+/* --- Corrige diseño para página Ciudad --- */
+main.ciudad {
+  display: block !important;
+  text-align: left !important;
+  align-items: stretch !important;
+  background: #fff !important;
+  padding-top: 60px; /* espacio bajo el header fijo */
+}
+
+/* Evita fondo borroso en Ciudad */
+main.ciudad .ciudad-container {
+  background: #fff !important;
+  backdrop-filter: none !important;
+}
+/* Sección de contenido */
+
+.content-section p {
+    margin: 0 0 1rem 0;
+}
+
+/* Responsivo */
+@media (min-width: 992px) {
+    .btn-menu { display: none; }
+    aside { left: 0; }
+    main { margin-left: 250px; }
+    .overlay { display: none !important; }
+}
+
+@media (max-width: 991px) {
+    .btn-menu { display: flex; }
+    .hero h1 { font-size: 2rem; }
+}
+/* =========================
+   🎢 ReelAtracciones
+========================= */
+.reel {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px 20px;
+  margin: 20px auto;
+  max-width: 95vw; /* evita que se salga de la pantalla */
+  box-sizing: border-box;
+}
+
+.reel::-webkit-scrollbar {
+  height: 8px;
+}
+
+.reel::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
+}
+
+.reel-item {
+  min-width: 200px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.reel-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.reel-item img {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 15px 15px 0 0;
+}
+
+.reel-item p {
+  font-size: 1em;
+  font-weight: 500;
+  color: #333;
+  margin: 8px 0 12px;
+}
+
+/* =========================
+   🌀 Mensajes de estado
+========================= */
+p {
+  text-align: center;
+  color: #666;
+  font-size: 1.1em;
+  margin-top: 15px;
+}
+
+/* =========================
+   📱 Responsividad
+========================= */
+@media (max-width: 768px) {
+  .reel {
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .reel-item {
+    min-width: 160px;
+  }
+
+  .reel-item img {
+    height: 110px;
+  }
+
+  .reel-item p {
+    font-size: 0.9em;
+  }
+}
+
+.sugerencias-lista {
+  color: black;
+  position: absolute;
+  background: white;
+  border: 1px solid #ddd;
+  border-top: none;
+  width: 100%;
+  max-width: 300px;
+  max-height: 180px;
+  overflow-y: auto;
+  z-index: 100;
+  list-style: none;
+  margin-top: 5px;
+  padding: 0;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sugerencias-lista li {
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.sugerencias-lista li:hover {
+  background-color: #f5f5f5;
+}
+
+/* 🚫 Corrige scroll lateral en toda la app */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* ✅ Asegura que aside y overlay no empujen contenido */
+aside,
+.overlay {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* 🧱 main no debe usar 100vw — solo 100% */
+main {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+main, .home, .explora {
+  margin: 0;
+  padding: 0;
+}
